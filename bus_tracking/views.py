@@ -230,19 +230,20 @@ def get_driver_by_route(request, route):
 
 # fetch student details 
 def get_student(request, phone):
-    try:
-        user = get_object_or_404(User, phone=phone)
-        student = get_object_or_404(Student, user=user)
+    return JsonResponse({'status': 'ok'}) 
+    # try:
+    #     user = get_object_or_404(User, phone=phone)
+    #     student = get_object_or_404(Student, user=user)
 
-        data = {
-            "name": user.name,
-            "phone": user.phone,
-            "route": student.route,  # already a string
-            "stop": student.stop
-        }
-        return JsonResponse(data)
-    except Exception as e:
-        return JsonResponse({"error": str(e)}, status=400)
+    #     data = {
+    #         "name": user.name,
+    #         "phone": user.phone,
+    #         "route": student.route,  # already a string
+    #         "stop": student.stop
+    #     }
+    #     return JsonResponse(data)
+    # except Exception as e:
+    #     return JsonResponse({"error": str(e)}, status=400)
 
 
 
