@@ -3,16 +3,12 @@ from rest_framework import generics
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt 
 import json
-from .models import User, Student, DriverInfo, Bus, BusLocation, Attendance, FingerprintTemplate
+from .models import User, Student, DriverInfo, Bus, BusLocation, Attendance
 from .serializers import UserSerializer, StudentSerializer, DriverSerializer, BusSerializer, BusLocationSerializer, AttendanceSerializer
-from django.contrib.auth.hashers import check_password
 from datetime import timedelta
 from django.utils.timezone import now
-from django.db.models import Count
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-import logging
-from django.db import transaction
+
+
 
 
 
