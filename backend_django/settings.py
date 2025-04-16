@@ -82,12 +82,12 @@ WSGI_APPLICATION = 'backend_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'track_my_bus',  # Your database name
         'USER': 'root',  # Your MySQL username
-        'PASSWORD': 'lesp@1234',  # Your MySQL password
-        'HOST': 'localhost',  # Change if using a remote database
-        'PORT': '3306',  # Default MySQL port
+        'PASSWORD': 'dFUF4UZAY1KWk2BpJkA7BPt3EAxQ7bcx',  # Your MySQL password
+        'HOST': 'dpg-cvvtnseuk2gs73dm4ve0-a',  # Change if using a remote database
+        'PORT': '5432',  # Default MySQL port
     }
 }
 
