@@ -127,9 +127,10 @@ def register_student(request):
             return JsonResponse({'status': 'error', 'message': 'Phone number already registered'}, status=400)
 
         user = User.objects.create(name=name, phone=phone, password=password, role='student')
-        Student.objects.create(route=route, stop=stop, user_id=user.id)
+        Student.objects.create(route=route, stop=stop, user=user)  # FIXED LINE ✅
 
         return JsonResponse({'status': 'success', 'message': 'Student registered successfully'})
+
 
 
 @csrf_exempt
