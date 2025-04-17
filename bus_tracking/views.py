@@ -143,28 +143,35 @@ def register_driver(request):
         password = data.get('password')
         route = data.get('route')
 
-        # First, create the user
-        user = User.objects.create(
-            name=name,
-            phone=phone,
-            password=password,
-            role='driver'
-        )
+        try:
+            # Create the user
+            user = User.objects.create(
+                name=name,
+                phone=phone,
+                password=password,
+                role='driver'
+            )
 
-        # Then, create the driver info record
-        DriverInfo.objects.create(
-            name=name,
-            phone=phone,
-            route=route
-        )
+            # Create the driver info
+            DriverInfo.objects.create(
+                name=name,
+                phone=phone,
+                route=route
+            )
 
-        Bus.objects.create(
-            route = route,
-            driver = user
-        )
+            # Create the bus entry (assigning this driver)
+            bus = Bus.objects.create(
+                route=route,
+                driver=user
+            )
 
-        return JsonResponse({'status': 'success', 'message': 'Driver registered successfully'})
+            return JsonResponse({'status': 'success', 'message': 'Driver registered and assigned to bus successfully'})
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': f'Error occurred: {str(e)}'}, status=500)
+
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
 
 
 
