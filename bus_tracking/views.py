@@ -158,6 +158,11 @@ def register_driver(request):
             route=route
         )
 
+        Bus.objects.create(
+            route = route,
+            driver_id = user
+        )
+
         return JsonResponse({'status': 'success', 'message': 'Driver registered successfully'})
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
 
