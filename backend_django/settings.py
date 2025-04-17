@@ -80,16 +80,18 @@ WSGI_APPLICATION = 'backend_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+import os
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'track_my_bus',  # Your database name
-        'USER': 'root',  # Your MySQL username
-        'PASSWORD': 'dFUF4UZAY1KWk2BpJkA7BPt3EAxQ7bcx',  # Your MySQL password
-        'HOST': 'dpg-cvvtnseuk2gs73dm4ve0-a',  # Change if using a remote database
-        'PORT': '5432',  # Default MySQL port
+        'NAME': 'track_my_bus',
+        'USER': 'root',
+        'PASSWORD': 'dFUF4UZAY1KWk2BpJkA7BPt3EAxQ7bcx',
+        'HOST': 'dpg-cvvtnseuk2gs73dm4ve0-a.virginia-postgres.render.com',
+        'PORT': '5432',
     }
 }
+
 
 
 
@@ -158,12 +160,13 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken"
 ]
 import dj_database_url
-import os
 
-DATABASES['default'] = dj_database_url.config(
-    default='sqlite:///db.sqlite3',  # fallback
-    conn_max_age=600
-)
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default='postgresql://root:dFUF4UZAY1KWk2BpJkA7BPt3EAxQ7bcx@dpg-cvvtnseuk2gs73dm4ve0-a.virginia-postgres.render.com/track_my_bus'
+    )
+}
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
